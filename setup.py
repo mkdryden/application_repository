@@ -1,8 +1,10 @@
 from distutils.core import setup
 
+import version
+
 
 setup(name='application_repository',
-      version='0.0.1',
+      version=version.getVersion(),
       description='A Django site for serving versioned application and '
       'plug-in downloads.',
       keywords='application distribute plugin download django',
