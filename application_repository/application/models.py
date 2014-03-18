@@ -1,7 +1,7 @@
 import re
 
 from django.db import models
-from path import path
+from path_helpers import path
 
 import app_settings
 from repository.models import Version, Package

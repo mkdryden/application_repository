@@ -1,5 +1,5 @@
 import sys
-from path import path
+from path_helpers import path
 
 project_root = path(__file__).parent.parent.parent
 sys.path.append(project_root)

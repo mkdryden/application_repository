@@ -1,6 +1,6 @@
 import urllib
 
-from path import path
+from path_helpers import path
 from jsonrpc import ServiceProxy
 
 

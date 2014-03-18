@@ -1,6 +1,6 @@
 import sys
 
-from path import path
+from path_helpers import path
 from django.core.exceptions import ObjectDoesNotExist
 
 project_root = path(__file__).parent.parent.parent

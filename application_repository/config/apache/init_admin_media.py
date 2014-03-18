@@ -1,6 +1,6 @@
 # IPython log file
 
-from path import path
+from path_helpers import path
 import django
 
 if __name__ == '__main__':
