@@ -37,10 +37,8 @@ class PackageRepository(object):
         return self.proxy.package_url(package_name, package_version)
 
     def latest_package_url(self, package_name):
-        latest_version = self.proxy.package_latest_version(
-                package_name)
-        package_url = self.proxy.package_url(package_name,
-                latest_version)
+        latest_version = self.proxy.package_latest_version(package_name)
+        package_url = self.proxy.package_url(package_name, latest_version)
         return package_url
 
     def download_latest(self, package_name, output_dir):
