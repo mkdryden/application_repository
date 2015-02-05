@@ -1,14 +1,46 @@
+import urllib
+import logging
+from copy import copy
+
+from path_helpers import path
+
 from ..repository.proxy import PackageRepository
 
 
 class PluginRepository(PackageRepository):
     repository_name = 'plugins'
 
+    def available_packages(self, app_version=None):
+        packages = super(PluginRepository, self).available_packages()
+        if app_version:
+            logging.info('available_packages(app_version=%s.%s.%s)' % 
+                         (app_version['major'], app_version['minor'],
+                          app_version['micro']))
+            for p in copy(packages): # need to make a copy of the packages list
+                                     # because we are removing elements while
+                                     # iterating through it
+                try:
+                    self.latest_version(p, app_version)
+                except:
+                    packages.remove(p)
+        else:
+            logging.info('available_packages(app_version=%s):' % app_version)
+        return packages
+
     def latest_version(self, package_name, app_version=None):
         if app_version is None:
-            return super(PluginRepository, self).latest_version(package_name)
-        return self.proxy.package_latest_version_for_app_version(package_name,
-                                                                 app_version)
+            version = super(PluginRepository, self).latest_version(package_name)
+            logging.info('latest_version(package_name=%s, app_verison=%s)'
+                         '=%s' % (package_name, app_version, version['major'],
+                         version['minor'], version['micro']))
+        else:
+            version = self.proxy.package_latest_version_for_app_version(
+                package_name, app_version)
+            logging.info('latest_version(package_name=%s, app_verison=%s.%s.%s)'
+                         '=%s.%s.%s' % (package_name, app_version['major'],
+                         app_version['minor'], app_version['micro'],
+                         version['major'], version['minor'], version['micro']))
+        return version
 
     def latest_package_url(self, package_name, app_version=None):
         latest_version = self.latest_version(package_name, app_version)

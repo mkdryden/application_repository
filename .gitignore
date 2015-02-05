@@ -3,3 +3,9 @@ settings.py
 app_settings.py
 *.db
 *.tar.gz
+.project
+.pydevproject
+MANIFEST
+RELEASE-VERSION
+*.egg-info/
+dist/
