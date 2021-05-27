@@ -28,7 +28,7 @@ class PluginVersion(Version):
         plugin_path = plugin_data_dir.joinpath(plugin_filename)
 
         if not plugin_path.isfile():
-            raise ValueError, 'Plugin not found: %s' % plugin_path
+            raise ValueError('Plugin not found: %s' % plugin_path)
         else:
             return plugin_path
 
@@ -37,4 +37,4 @@ class Plugin(Package):
     plugin_name = models.CharField(max_length=200)
 
     def __unicode__(self):
-        return u'[%s] %s' % (self.name, self.plugin_name)
+        return '[%s] %s' % (self.name, self.plugin_name)

@@ -30,6 +30,6 @@ Download latest version of specified plugin.""",
 if __name__ == '__main__':
     args = parse_args()
     p = PluginRepository(args.server_url)
-    print p.latest_version(args.plugin_name)
-    print p.versions(args.plugin_name)
+    print(p.latest_version(args.plugin_name))
+    print(p.versions(args.plugin_name))
     p.download_latest(args.plugin_name, args.output_dir)

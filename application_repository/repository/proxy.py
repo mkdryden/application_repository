@@ -1,4 +1,4 @@
-import urllib
+import urllib.request, urllib.parse, urllib.error
 
 from path_helpers import path
 from jsonrpc import ServiceProxy
@@ -9,7 +9,7 @@ class PackageRepository(object):
 
     def __init__(self, server_url):
         if self.repository_name is None:
-            raise NotImplementedError, 'repository_name must be set'
+            raise NotImplementedError('repository_name must be set')
         self.server_url = server_url
         self._proxy = None
         self.proxy
@@ -45,10 +45,10 @@ class PackageRepository(object):
         output_dir = path(output_dir)
         package_url = self.latest_package_url(package_name)
         package_full_url = '%s%s' % (self.server_url, package_url)
-        data = urllib.urlopen(package_full_url).read()
+        data = urllib.request.urlopen(package_full_url).read()
         local_path = output_dir.joinpath(path(package_url).name)
         if not local_path.isfile():
             local_path.write_bytes(data)
-            print 'Saved latest %s to %s' % (package_name, local_path)
+            print('Saved latest %s to %s' % (package_name, local_path))
         else:
-            print 'File %s already exists - skipping download' % (local_path)
+            print('File %s already exists - skipping download' % (local_path))

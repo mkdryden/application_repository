@@ -16,7 +16,7 @@ class PluginForm(forms.ModelForm):
         super(PluginForm, self).__init__(*args, **kwargs)
  
         # Set the form fields based on the model object
-        if kwargs.has_key('instance'):
+        if 'instance' in kwargs:
             instance = kwargs['instance']
             self.initial['package_name'] = instance.name
 

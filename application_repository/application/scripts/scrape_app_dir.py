@@ -21,9 +21,9 @@ def process_app_archive(app_path):
         app_version, created = AppVersion.objects.get_or_create(
                 package=app, major=major, minor=minor, micro=micro)
         if created:
-            print 'Added App %s version %s.%s.%s' % (app.name, 
+            print('Added App %s version %s.%s.%s' % (app.name, 
                     app_version.major, app_version.minor,
-                            app_version.micro)
+                            app_version.micro))
 
 
 def scan_for_apps(apps_path):
@@ -35,5 +35,5 @@ def scan_for_apps(apps_path):
 
 if __name__ == '__main__':
     app_data_dir = app_settings.DATA_DIR
-    print app_data_dir
+    print(app_data_dir)
     scan_for_apps(app_data_dir)

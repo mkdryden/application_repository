@@ -31,9 +31,9 @@ def process_plugin_archive(plugin_path):
         plugin_version, created = PluginVersion.objects.get_or_create(
                 package=plugin, major=major, minor=minor, micro=micro)
         if created:
-            print 'Added Plugin %s version %s.%s.%s' % (plugin.name, 
+            print('Added Plugin %s version %s.%s.%s' % (plugin.name, 
                     plugin_version.major, plugin_version.minor,
-                            plugin_version.micro)
+                            plugin_version.micro))
 
 
 def scan_for_plugins(plugins_path):
@@ -42,7 +42,7 @@ def scan_for_plugins(plugins_path):
     for plugin_path in plugin_files:
         try:
             process_plugin_archive(plugin_path)
-        except ValueError, why:
+        except ValueError as why:
             logging.warning('skipping plugin archive %s:\n%s' % (plugin_path,
                 why))
 

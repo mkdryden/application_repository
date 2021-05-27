@@ -4,8 +4,8 @@ from django_jsonrpc import jsonrpc_site
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
 
-from plugins.models import PluginVersion, Plugin
-from application.models import AppVersion, App
+from .plugins.models import PluginVersion, Plugin
+from .application.models import AppVersion, App
 
 
 admin.autodiscover()
